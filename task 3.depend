@@ -1,9 +1,8 @@
 # depslib dependency file v1.0
-1624741286 source:c:\users\mixa\desktop\Лабы прога\task 3\main.c
+1624741655 source:c:\users\mixa\desktop\Лабы прога\task 3\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
-	<graphics.h>
 	"Razb.h"
 
 1624741333 c:\users\mixa\desktop\Лабы прога\task 3\razb.h
