@@ -30,7 +30,7 @@ void kill (struct R *band)
     char nm[10];
     printf("Введите имя разбойника:\n");
     scanf("%s",&nm);
-    while ((i<40)&&(strcmp(band[i].name,nm)!=0))
+    while ((i<40)&&(strcmp(band[i].name,nm)!=0)||((band[i].alive==0)))
            i++;
     band[i].alive=0;
     band[40].alive--;
@@ -45,13 +45,8 @@ void kill (struct R *band)
 void create (struct R *band)
 {
 
-    int c;
-     printf("Введите начальное количество разбойников и их имена \n");
-   scanf("%d",&c);
     for (int i=0;i<41;i++)
    {
-
-
      band[i].alive=0;
      strcpy(band[i].name,"0");
      band[i].hrs=0;
@@ -63,9 +58,9 @@ void create (struct R *band)
      band[i].wealth = 0;
    }
     strcpy(band[40].name,"Итого");
-   for (int i=0;i<c;i++)
-    {
-    scanf("%s",&band[i].name);
+    int i=0;
+
+    strcpy(band[i].name,"Азамат");
     band[i].hrs=rand()%10;
     band[i].swrd= rand()%10;
     band[i].gems= rand()%20;
@@ -82,7 +77,78 @@ void create (struct R *band)
     band[40].wf+=band[i].wf;
     band[40].coins+=band[i].coins;
     band[40].wealth+=band[i].wealth;
-    }
+    i++;
+    strcpy(band[i].name,"Иса");
+    band[i].hrs=rand()%10;
+    band[i].swrd= rand()%10;
+    band[i].gems= rand()%20;
+    band[i].nk=rand()%10;
+    band[i].wf=rand()%4;
+    band[i].coins=rand()%3000;
+    band[i].alive=1;
+    band[i].wealth=band[i].hrs*hrs$ + band[i].swrd*swrd$ + band[i].gems*gems$ + band[i].nk*nk$ + band[i].coins - band[i].wf*wf$;
+    band[40].alive++;
+    band[40].hrs+=band[i].hrs;
+    band[40].swrd+=band[i].swrd;
+    band[40].gems+=band[i].gems;
+    band[40].nk+=band[i].nk;
+    band[40].wf+=band[i].wf;
+    band[40].coins+=band[i].coins;
+    band[40].wealth+=band[i].wealth;
+    i++;
+    strcpy(band[i].name,"Казбек");
+    band[i].hrs=rand()%10;
+    band[i].swrd= rand()%10;
+    band[i].gems= rand()%20;
+    band[i].nk=rand()%10;
+    band[i].wf=rand()%4;
+    band[i].coins=rand()%3000;
+    band[i].alive=1;
+    band[i].wealth=band[i].hrs*hrs$ + band[i].swrd*swrd$ + band[i].gems*gems$ + band[i].nk*nk$ + band[i].coins - band[i].wf*wf$;
+    band[40].alive++;
+    band[40].hrs+=band[i].hrs;
+    band[40].swrd+=band[i].swrd;
+    band[40].gems+=band[i].gems;
+    band[40].nk+=band[i].nk;
+    band[40].wf+=band[i].wf;
+    band[40].coins+=band[i].coins;
+    band[40].wealth+=band[i].wealth;
+    i++;
+    strcpy(band[i].name,"Насыр");
+    band[i].hrs=rand()%10;
+    band[i].swrd= rand()%10;
+    band[i].gems= rand()%20;
+    band[i].nk=rand()%10;
+    band[i].wf=rand()%4;
+    band[i].coins=rand()%3000;
+    band[i].alive=1;
+    band[i].wealth=band[i].hrs*hrs$ + band[i].swrd*swrd$ + band[i].gems*gems$ + band[i].nk*nk$ + band[i].coins - band[i].wf*wf$;
+    band[40].alive++;
+    band[40].hrs+=band[i].hrs;
+    band[40].swrd+=band[i].swrd;
+    band[40].gems+=band[i].gems;
+    band[40].nk+=band[i].nk;
+    band[40].wf+=band[i].wf;
+    band[40].coins+=band[i].coins;
+    band[40].wealth+=band[i].wealth;
+    i++;
+    strcpy(band[i].name,"Хасбулат");
+    band[i].hrs=rand()%10;
+    band[i].swrd= rand()%10;
+    band[i].gems= rand()%20;
+    band[i].nk=rand()%10;
+    band[i].wf=rand()%4;
+    band[i].coins=rand()%3000;
+    band[i].alive=1;
+    band[i].wealth=band[i].hrs*hrs$ + band[i].swrd*swrd$ + band[i].gems*gems$ + band[i].nk*nk$ + band[i].coins - band[i].wf*wf$;
+    band[40].alive++;
+    band[40].hrs+=band[i].hrs;
+    band[40].swrd+=band[i].swrd;
+    band[40].gems+=band[i].gems;
+    band[40].nk+=band[i].nk;
+    band[40].wf+=band[i].wf;
+    band[40].coins+=band[i].coins;
+    band[40].wealth+=band[i].wealth;
 
 
 }
@@ -126,14 +192,14 @@ void showrich(struct R *band)
     int max=0,i=0;
     while ((i<40)&&(strcmp(band[i].name,"0")!=0))
     {
-       if ((band[i].wealth>max)&&(band[i].alive=1))
+       if ((band[i].wealth>max)&&(band[i].alive==1))
             max=band[i].wealth;
        i++;
     }
     i=0;
     while ((i<40)&&(strcmp(band[i].name,"0")!=0))
     {
-       if ((band[i].wealth==max)&&(band[i].alive=1))
+       if ((band[i].wealth==max)&&(band[i].alive==1))
             showrb(i,band);
        i++;
     }
@@ -155,7 +221,7 @@ void showinfo(struct R *band)
 void gr1(struct R *band)
 {
     int a;
-    float start,end;
+    double start=0,end;
 int driver, mode,i=0,clr=1;
 driver = DETECT;
 mode = 0;
@@ -170,6 +236,7 @@ while ((i<40)&&(strcmp(band[i].name,"0")!=0))
          pieslice (300, 200, start, end, 150);
          start=end;
         }
+        pieslice (300, 200, start, 0, 150);
         i++;
     }
 getch ();
